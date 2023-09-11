@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/HomeNoAuth.module.scss";
-import { HeaderNoAuth, PresentationSection, CardSection } from "@/src/components";
+import { HeaderNoAuth, PresentationSection, CardSection, SlideComponent } from "@/src/components";
 
 const HomeNotAuth = () => {
   return (
