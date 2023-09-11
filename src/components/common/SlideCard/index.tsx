@@ -1,12 +1,21 @@
 import styles from './styles.module.scss';
+import { CourseType } from '@/src/services/courseService';
 
-export const SlideCard: React.FC = () => {
+interface props {
+    course: CourseType
+}
+
+export const SlideCard: React.FC<props> = ({ course }: props ) => {
     return (
         <>
             <div className={styles.slide}>
-                <img src="" alt="" className={styles.slideImg} />
-                <p className={styles.slideTitle}></p>
-                <p className={styles.slideDescription}></p>
+                <img 
+                    src={`${process.env.NEXT_PUBLIC_BASEURL}/${course.thumbnailUrl}`} 
+                    alt={course.name} 
+                    className={styles.slideImg} 
+                />
+                <p className={styles.slideTitle}>{course.name}</p>
+                <p className={styles.slideDescription}>{course.synopsis}</p>
             </div>
         </>
     )
