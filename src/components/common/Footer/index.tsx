@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 export const Footer: React.FC = () => {
     return (
         <>
-            <Container>
+            <Container className={styles.footer}>
                 <img   
                     src="/logoOnebitcode.svg" 
                     alt="logoFooter"
