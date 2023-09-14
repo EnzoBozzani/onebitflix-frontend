@@ -1,19 +1,19 @@
 import api from "./api";
 
 export type EpisodeType = {
-    id: number, 
-    name: string, 
-    synopsis: string, 
-    order: number, 
-    videoUrl: string, 
+    id: number,
+    name: string,
+    synopsis: string,
+    order: number,
+    videoUrl: string,
     secondsLong: number
 };
 
 export type CourseType = {
-    id: number, 
-    name: string, 
-    thumbnailUrl: string, 
-    synopsis: string, 
+    id: number,
+    name: string,
+    thumbnailUrl: string,
+    synopsis: string,
     episodes?: EpisodeType[]
 };
 
@@ -24,7 +24,7 @@ export const courseService = {
                 console.log(err.response.data.message);
                 return err.response;
             });
-        
+
         return res;
-    }, 
+    },
 }
