@@ -1,12 +1,56 @@
-import { Footer, HeaderGeneric } from '@/src/components';
+import { Footer, HeaderGeneric, ToastComponent } from '@/src/components';
 import styles from '@/styles/RegisterLogin.module.scss';
 import { NextPage } from 'next';
 import Head from 'next/head';
 //@ts-ignore
 import { Form, FormGroup, Label, Container, Button, Input } from 'reactstrap';
+import { FormEvent } from 'react';
+import { authService } from '@/src/services/authService';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const Register: NextPage = () => {
-    return (
+    const router = useRouter();
+    const [toastIsOpen, setToastIsOpen] = useState<boolean>(false);
+    const [toastMessage, setToastMessage] = useState<string>('');
+
+    const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const firstName = formData.get('firstName')!.toString();
+        const lastName = formData.get('lastName')!.toString();
+        const phone = formData.get('phone')!.toString();
+        const birth = formData.get('birth')!.toString();
+        const email = formData.get('email')!.toString();
+        const password = formData.get('password')!.toString();
+        const confirmPassword = formData.get('confirmPassword')!.toString();
+        const params = { firstName, lastName, phone, birth, email, password };
+
+        if (confirmPassword !== password) {
+            setToastIsOpen(true);
+            setTimeout(() => {
+                setToastIsOpen(false);
+            }, 1000 * 3);
+            setToastMessage('Senha e confirmação diferentes!');
+            return;
+        }
+
+        const { data, status } = await authService.register(params);
+
+        if (status === 201){
+            router.push('/login?registred=true');
+
+        } else {
+            setToastIsOpen(true);
+            setTimeout(() => {
+                setToastIsOpen(false);
+            }, 1000 * 3);
+            setToastMessage(data.message);
+        }
+    };
+
+    return (    
         <>
             <Head>
                 <title>Onebitflix - Registro</title>
@@ -17,12 +61,12 @@ const Register: NextPage = () => {
                 <HeaderGeneric btnContent='Quero fazer login' btnUrl='/login' logoUrl='/' />
                 <Container className='py-5'>
                     <p className={styles.formTitle}>Bem-vindo(a) ao OneBitFlix!</p>
-                    <Form className={styles.form}>
+                    <Form className={styles.form} onSubmit={handleRegister}>
                         <p className='text-center'>
                             <strong>Faça a sua conta!</strong>
                         </p>
                         <FormGroup>
-                            <Label for='firstName' classname={styles.label}>NOME</Label>
+                            <Label for='firstName' className={styles.label}>NOME</Label>
                             <Input
                                 name='firstName'
                                 id='firstName'
@@ -34,7 +78,7 @@ const Register: NextPage = () => {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for='lastName' classname={styles.label}>SOBRENOME</Label>
+                            <Label for='lastName' className={styles.label}>SOBRENOME</Label>
                             <Input
                                 name='lastName'
                                 id='lastName'
@@ -46,7 +90,7 @@ const Register: NextPage = () => {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for='phone' classname={styles.label}>WHATSAPP / TELEGRAM</Label>
+                            <Label for='phone' className={styles.label}>WHATSAPP / TELEGRAM</Label>
                             <Input
                                 name='phone'
                                 id='phone'
@@ -59,7 +103,7 @@ const Register: NextPage = () => {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for='email' classname={styles.label}>EMAIL</Label>
+                            <Label for='email' className={styles.label}>EMAIL</Label>
                             <Input
                                 name='email'
                                 id='email'
@@ -71,7 +115,7 @@ const Register: NextPage = () => {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for='birth' classname={styles.label}>DATA DE NASCIMENTO</Label>
+                            <Label for='birth' className={styles.label}>DATA DE NASCIMENTO</Label>
                             <Input
                                 name='birth'
                                 id='birth'
@@ -84,7 +128,7 @@ const Register: NextPage = () => {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for='password' classname={styles.label}>SENHA</Label>
+                            <Label for='password' className={styles.label}>SENHA</Label>
                             <Input
                                 name='password'
                                 id='password'
@@ -97,10 +141,10 @@ const Register: NextPage = () => {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for='password' classname={styles.label}>CONFIRME SUA SENHA</Label>
+                            <Label for='confirmPassword' className={styles.label}>CONFIRME SUA SENHA</Label>
                             <Input
-                                name='password'
-                                id='password'
+                                name='confirmPassword'
+                                id='confirmPassword'
                                 type='password'
                                 placeholder='Confirme a sua senha'
                                 required
@@ -116,6 +160,7 @@ const Register: NextPage = () => {
                 </Container>
                 <Footer/>
             </main>
+            <ToastComponent color='bg-danger' isOpen={toastIsOpen} message={toastMessage} />
         </>
     );
 };
