@@ -5,5 +5,6 @@ import { SlideComponent } from "./common/SlideComponent";
 import { SlideCard } from "./common/SlideCard";
 import { SlidesSection } from "./HomeNoAuth/SlidesSection";
 import { Footer } from "./common/Footer";
+import { HeaderGeneric } from "./common/HeaderGeneric";
 
-export { HeaderNoAuth, PresentationSection, CardSection, SlideComponent, SlideCard, SlidesSection, Footer };
+export { HeaderNoAuth, PresentationSection, CardSection, SlideComponent, SlideCard, SlidesSection, Footer, HeaderGeneric };

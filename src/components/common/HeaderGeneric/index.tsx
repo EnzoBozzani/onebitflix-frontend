@@ -9,7 +9,7 @@ interface props {
     btnContent: string
 }
 
-export const HeaderGeneric = ({ logoUrl, btnUrl, btnContent }: props) => {
+export const HeaderGeneric: React.FC<props> = ({ logoUrl, btnUrl, btnContent }: props) => {
     return (
         <>
             <div className={styles.header}>
