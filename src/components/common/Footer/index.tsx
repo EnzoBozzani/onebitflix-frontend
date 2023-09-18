@@ -1,19 +1,19 @@
 import styles from './styles.module.scss';
 //@ts-ignore
-import { Container } from 'reactstrap';
+import { Container } from 'reactstrap'
 
 export const Footer: React.FC = () => {
     return (
         <>
             <Container className={styles.footer}>
-                <img   
-                    src="/logoOnebitcode.svg" 
+                <img
+                    src="/logoOnebitcode.svg"
                     alt="logoFooter"
-                    className={styles.footerLogo} 
+                    className={styles.footerLogo}
                 />
-                <a 
-                    href="http://onebitcode.com" 
-                    target='blank' 
+                <a
+                    href="http://onebitcode.com"
+                    target='blank'
                     className={styles.footerLink}
                 >
                     ONEBITCODE.COM
