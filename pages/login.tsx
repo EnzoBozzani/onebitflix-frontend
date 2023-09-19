@@ -1,11 +1,55 @@
 import styles from '@/styles/RegisterLogin.module.scss';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { HeaderGeneric, Footer } from '@/src/components';
+import { HeaderGeneric, Footer, ToastComponent } from '@/src/components';
 //@ts-ignore
 import { Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { useRouter } from 'next/router';
+import { FormEvent, useEffect, useState } from 'react';
+import { authService } from '@/src/services/authService';
 
 const Login: NextPage = () => {
+    const router = useRouter();
+    const [toastColor, setToastColor] = useState<string>('');
+    const [toastIsOpen, setToastIsOpen] = useState<boolean>(false);
+    const [toastMessage, setToastMessage] = useState<string>('');
+
+    useEffect(() => {
+        const registerSuccess = router.query.registred;
+        if (registerSuccess === 'true') {
+            setToastColor('bg-success');
+            setToastIsOpen(true);
+            setTimeout(() => {
+                setToastIsOpen(false);
+            }, 1000 * 3);
+            setToastMessage('Cadastro feito com sucesso!');
+        }
+    }, [router.query]);
+
+    const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get('email')!.toString();
+        const password = formData.get('password')!.toString();
+        const params = { email, password };
+
+        const { status } = await authService.login(params);
+
+        if (status === 200) {
+            router.push('/home');
+            return;
+        }
+
+        setToastColor('bg-danger');
+        setToastIsOpen(true);
+        setTimeout(() => {
+            setToastIsOpen(false);
+        }, 1000 * 3);
+        setToastMessage('Email ou senha incorretos!');
+
+    }
+
     return (
         <>
             <Head>
@@ -20,7 +64,7 @@ const Login: NextPage = () => {
                 />
                 <Container className='py-5'>
                     <p className={styles.formTitle}>Bem vindo(a) de volta!</p>
-                    <Form className={styles.form}>
+                    <Form className={styles.form} onSubmit={handleLogin}>
                         <p className='text-center'><strong>Bem vindo(a) ao Onebitflix!</strong></p>
                         <FormGroup>
                             <Label
@@ -50,10 +94,11 @@ const Login: NextPage = () => {
                                 className={styles.input}
                             />
                         </FormGroup>
-                        <Button outline className={styles.formBtn}>
+                        <Button outline className={styles.formBtn} type='submit'>
                             Entrar
                         </Button>
                     </Form>
+                    <ToastComponent color={toastColor} isOpen={toastIsOpen} message={toastMessage} />
                 </Container>
                 <Footer />
             </main>
