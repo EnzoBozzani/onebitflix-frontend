@@ -8,6 +8,7 @@ import { Footer } from "./common/Footer";
 import { HeaderGeneric } from "./common/HeaderGeneric";
 import { ToastComponent } from "./common/Toast";
 import { HeaderAuth } from "./common/HeaderAuth";
+import { FeaturedSection } from "./HomeAuth/FeaturedSection";
 
 export {
     HeaderNoAuth,
@@ -19,5 +20,6 @@ export {
     Footer,
     HeaderGeneric,
     ToastComponent,
-    HeaderAuth
+    HeaderAuth,
+    FeaturedSection
 };

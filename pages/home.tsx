@@ -1,7 +1,7 @@
 import styles from '@/styles/Home.module.scss';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { HeaderAuth } from '@/src/components';
+import { FeaturedSection } from '@/src/components';
 
 
 const HomeAuth: NextPage = () => {
@@ -12,8 +12,7 @@ const HomeAuth: NextPage = () => {
                 <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
             </Head>
             <main>
-                <HeaderAuth />
-                <p>Você está logado</p>
+                <FeaturedSection />
             </main>
         </>
     );
