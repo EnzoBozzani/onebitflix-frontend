@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 //@ts-ignore
 import { Form, FormGroup, Label, Container, Button, Input } from 'reactstrap';
-import { FormEvent } from 'react';
+import { FormEvent, useEffect } from 'react';
 import { authService } from '@/src/services/authService';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -13,6 +13,12 @@ const Register: NextPage = () => {
     const router = useRouter();
     const [toastIsOpen, setToastIsOpen] = useState<boolean>(false);
     const [toastMessage, setToastMessage] = useState<string>('');
+
+    useEffect(() => {
+        if (sessionStorage.getItem('onebitflix-token')) {
+            router.push('/home');
+        }
+    }, []);
 
     const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -38,7 +44,7 @@ const Register: NextPage = () => {
 
         const { data, status } = await authService.register(params);
 
-        if (status === 201){
+        if (status === 201) {
             router.push('/login?registred=true');
 
         } else {
@@ -50,7 +56,7 @@ const Register: NextPage = () => {
         }
     };
 
-    return (    
+    return (
         <>
             <Head>
                 <title>Onebitflix - Registro</title>
@@ -158,7 +164,7 @@ const Register: NextPage = () => {
                         </Button>
                     </Form>
                 </Container>
-                <Footer/>
+                <Footer />
             </main>
             <ToastComponent color='bg-danger' isOpen={toastIsOpen} message={toastMessage} />
         </>

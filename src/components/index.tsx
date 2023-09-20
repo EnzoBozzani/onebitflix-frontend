@@ -7,5 +7,17 @@ import { SlidesSection } from "./HomeNoAuth/SlidesSection";
 import { Footer } from "./common/Footer";
 import { HeaderGeneric } from "./common/HeaderGeneric";
 import { ToastComponent } from "./common/Toast";
+import { HeaderAuth } from "./common/HeaderAuth";
 
-export { HeaderNoAuth, PresentationSection, CardSection, SlideComponent, SlideCard, SlidesSection, Footer, HeaderGeneric, ToastComponent };
+export {
+    HeaderNoAuth,
+    PresentationSection,
+    CardSection,
+    SlideComponent,
+    SlideCard,
+    SlidesSection,
+    Footer,
+    HeaderGeneric,
+    ToastComponent,
+    HeaderAuth
+};
