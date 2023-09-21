@@ -9,6 +9,7 @@ import { HeaderGeneric } from "./common/HeaderGeneric";
 import { ToastComponent } from "./common/Toast";
 import { HeaderAuth } from "./common/HeaderAuth";
 import { FeaturedSection } from "./HomeAuth/FeaturedSection";
+import { NewestCategories } from "./HomeAuth/NewestCategories";
 
 export {
     HeaderNoAuth,
@@ -21,5 +22,6 @@ export {
     HeaderGeneric,
     ToastComponent,
     HeaderAuth,
-    FeaturedSection
+    FeaturedSection,
+    NewestCategories
 };
