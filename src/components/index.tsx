@@ -12,6 +12,7 @@ import { FeaturedSection } from "./HomeAuth/FeaturedSection";
 import { NewestCategories } from "./HomeAuth/NewestCategories";
 import { FavoriteCategories } from "./HomeAuth/FavoriteCategories";
 import { FeaturedCategory } from "./HomeAuth/FeaturedCategory";
+import { ListCategories } from "./HomeAuth/ListCategories";
 
 export {
     HeaderNoAuth,
@@ -27,5 +28,6 @@ export {
     FeaturedSection,
     NewestCategories,
     FavoriteCategories,
-    FeaturedCategory
+    FeaturedCategory,
+    ListCategories
 };

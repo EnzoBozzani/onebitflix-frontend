@@ -1,7 +1,15 @@
 import styles from '@/styles/Home.module.scss';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { FeaturedSection, NewestCategories, FavoriteCategories, Footer, FeaturedCategory } from '@/src/components';
+import {
+    FeaturedSection,
+    NewestCategories,
+    FavoriteCategories,
+    Footer,
+    FeaturedCategory,
+    ListCategories
+}
+    from '@/src/components';
 
 
 const HomeAuth: NextPage = () => {
@@ -16,6 +24,7 @@ const HomeAuth: NextPage = () => {
                 <NewestCategories />
                 <FavoriteCategories />
                 <FeaturedCategory />
+                <ListCategories />
                 <Footer />
             </main>
         </>
