@@ -1,4 +1,3 @@
-import styles from '@/styles/Home.module.scss';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import {
