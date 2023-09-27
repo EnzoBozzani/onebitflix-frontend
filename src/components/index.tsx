@@ -13,7 +13,7 @@ import { NewestCategories } from "./HomeAuth/NewestCategories";
 import { FavoriteCategories } from "./HomeAuth/FavoriteCategories";
 import { FeaturedCategory } from "./HomeAuth/FeaturedCategory";
 import { ListCategories } from "./HomeAuth/ListCategories";
-import { UserForm } from "./profile/User";
+import { UserForm } from "./Profile/User";
 
 export {
     HeaderNoAuth,

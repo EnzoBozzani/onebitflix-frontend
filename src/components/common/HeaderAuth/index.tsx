@@ -3,14 +3,23 @@ import styles from './styles.module.scss';
 import { Container, Form, Input } from 'reactstrap';
 import Link from 'next/link';
 import Modal from 'react-modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { profileService } from '@/src/services/profileService';
 
 Modal.setAppElement('#__next');
 
 export const HeaderAuth: React.FC = () => {
     const router = useRouter();
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [initials, setInitials] = useState("");
+
+    useEffect(() => {
+        profileService.fetchCurrentUser()
+            .then((user) => {
+                setInitials(`${user.firstName[0]}${user.lastName[0]}`)
+            })
+    }, []);
 
     const handleOpenModal = () => {
         setModalIsOpen(true);
@@ -49,7 +58,7 @@ export const HeaderAuth: React.FC = () => {
                         alt="lupaHeader"
                         className={styles.searchImg}
                     />
-                    <p className={styles.userProfile} onClick={handleOpenModal}>AB</p>
+                    <p className={styles.userProfile} onClick={handleOpenModal}>{initials}</p>
                 </div>
                 <Modal
                     isOpen={modalIsOpen}
