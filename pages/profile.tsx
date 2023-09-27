@@ -1,11 +1,15 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import { UserForm, HeaderAuth, Footer } from "@/src/components";
+import { UserForm, HeaderAuth, Footer, PasswordForm } from "@/src/components";
 //@ts-ignore
 import { Container, Row, Col, Button } from 'reactstrap';
 import styles from '@/styles/Profile.module.scss';
+import { useState, ReactNode } from "react";
 
 const UserInfo: NextPage = () => {
+    const [form, setForm] = useState('userForm');
+
+
     return (
         <>
             <Head>
@@ -20,15 +24,32 @@ const UserInfo: NextPage = () => {
                     <p className={styles.title}>Minha conta</p>
                     <Row className='pt-3 pb-5'>
                         <Col md={4} className={styles.btnColumn} >
-                            <Button className={styles.renderForm}>
+                            <Button
+                                className={styles.renderForm}
+                                onClick={() => setForm('userForm')}
+                                style={{ color: form === 'userForm' ? '#ff0044' : '#fff' }}
+                            >
                                 DADOS PESSOAS
                             </Button>
-                            <Button className={styles.renderForm}>
+                            <Button
+                                className={styles.renderForm}
+                                onClick={() => setForm('passwordForm')}
+                                style={{ color: form === 'passwordForm' ? '#ff0044' : '#fff' }}
+                            >
                                 SENHA
                             </Button>
                         </Col>
                         <Col md>
-                            <UserForm />
+                            {
+                                form === 'userForm' ?
+                                    (
+                                        <UserForm />
+                                    )
+                                    :
+                                    (
+                                        <PasswordForm />
+                                    )
+                            }
                         </Col>
                     </Row>
                 </Container>

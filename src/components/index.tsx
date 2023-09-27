@@ -14,6 +14,7 @@ import { FavoriteCategories } from "./HomeAuth/FavoriteCategories";
 import { FeaturedCategory } from "./HomeAuth/FeaturedCategory";
 import { ListCategories } from "./HomeAuth/ListCategories";
 import { UserForm } from "./Profile/User";
+import { PasswordForm } from "./Profile/Password";
 
 export {
     HeaderNoAuth,
@@ -31,5 +32,6 @@ export {
     FavoriteCategories,
     FeaturedCategory,
     ListCategories,
-    UserForm
+    UserForm,
+    PasswordForm
 };
