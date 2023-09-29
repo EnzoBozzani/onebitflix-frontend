@@ -15,6 +15,7 @@ import { FeaturedCategory } from "./HomeAuth/FeaturedCategory";
 import { ListCategories } from "./HomeAuth/ListCategories";
 import { UserForm } from "./Profile/User";
 import { PasswordForm } from "./Profile/Password";
+import { PageSpinner } from "./common/Spinner";
 
 export {
     HeaderNoAuth,
@@ -33,5 +34,6 @@ export {
     FeaturedCategory,
     ListCategories,
     UserForm,
-    PasswordForm
+    PasswordForm,
+    PageSpinner
 };

@@ -2,12 +2,13 @@ import styles from '@/styles/SlideCategory.module.scss';
 import { SlideComponent } from '../..';
 import useSWR from 'swr';
 import { courseService } from '@/src/services/courseService';
+import { PageSpinner } from '../..';
 
 export const FavoriteCategories: React.FC = () => {
     const { data, error } = useSWR("/favorites", courseService.getFavoriteCourses);
 
     if (error) return error;
-    if (!data) return <p style={{ color: 'white' }}>Carregando...</p>;
+    if (!data) return <PageSpinner />;
 
     return (
         <>

@@ -5,12 +5,13 @@ import { HeaderAuth } from '../..';
 //@ts-ignore
 import { Container, Button } from 'reactstrap';
 import Link from 'next/link';
+import { PageSpinner } from '../..';
 
 export const FeaturedSection: React.FC = () => {
     const { data, error } = useSWR("/featured", courseService.getFeaturedCourses);
 
     if (error) return error;
-    if (!data) return <p style={{ color: 'white' }}>Carregando...</p>;
+    if (!data) return <PageSpinner />;
 
     return (
         <>
