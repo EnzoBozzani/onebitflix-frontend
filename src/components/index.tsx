@@ -16,6 +16,7 @@ import { ListCategories } from "./HomeAuth/ListCategories";
 import { UserForm } from "./Profile/User";
 import { PasswordForm } from "./Profile/Password";
 import { PageSpinner } from "./common/Spinner";
+import { SearchCard } from "./SearchCard";
 
 export {
     HeaderNoAuth,
@@ -35,5 +36,6 @@ export {
     ListCategories,
     UserForm,
     PasswordForm,
-    PageSpinner
+    PageSpinner,
+    SearchCard
 };
