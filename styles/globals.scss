@@ -8,7 +8,7 @@ main {
     background-color: #151515;
     min-height: 100vh;
     color: #fff;
-    //por conta do bootstrap, a margem dos 
+    //por conta do bootstrap, a margem dos
     //parágrafos fica ruim as vezes
     p {
         margin: 0;
@@ -17,16 +17,16 @@ main {
 
 //personalização do scrollbar
 ::-webkit-scrollbar {
-    width: 8px;    
+    width: 8px;
 }
 
 //barra do scrollbar
 ::-webkit-scrollbar-track {
-    background: #151515;  
+    background: #151515;
 }
 
 //fundo do scrollbar
 ::-webkit-scrollbar-thumb {
-    background: #868686;  
+    background: #868686;
     border-radius: 40px;
 }

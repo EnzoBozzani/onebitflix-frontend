@@ -35,7 +35,7 @@ const Search: NextPage = () => {
                     <HeaderAuth />
                 </div>
                 {searchResult.length >= 1 ?
-                    (<div className={styles.searchResult}>
+                    (<div className={styles.searchContainer}>
                         <Container className='d-flex flex-wrap justify-content-center gap-5 py-4'>
                             {searchResult?.map((course) => (
                                 <SearchCard course={course} key={course.id} />
@@ -43,7 +43,9 @@ const Search: NextPage = () => {
                         </Container>
                     </div>)
                     :
-                    <p className={styles.noSearchResult}>Nenhum resultado encontrado.</p>
+                    <div className={styles.searchContainer}>
+                        <p className={styles.noSearchResult}>Nenhum resultado encontrado.</p>
+                    </div>
 
                 }
                 <div className={styles.headerFooterBg}>

@@ -10,7 +10,7 @@ export const SearchCard: React.FC<props> = ({ course }: props) => {
     return (
         <>
             <Link
-                href={`/courses/${course.id}`}
+                href={`/course/${course.id}`}
             >
                 <div className={styles.searchCard}>
                     <img
