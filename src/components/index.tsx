@@ -17,6 +17,7 @@ import { UserForm } from "./Profile/User";
 import { PasswordForm } from "./Profile/Password";
 import { PageSpinner } from "./common/Spinner";
 import { SearchCard } from "./SearchCard";
+import { EpisodesList } from "./EpisodesList";
 
 export {
     HeaderNoAuth,
@@ -37,5 +38,6 @@ export {
     UserForm,
     PasswordForm,
     PageSpinner,
-    SearchCard
+    SearchCard,
+    EpisodesList
 };

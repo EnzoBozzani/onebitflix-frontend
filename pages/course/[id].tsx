@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import styles from '@/styles/CoursePage.module.scss';
 import Head from "next/head";
-import { HeaderAuth } from "@/src/components";
+import { EpisodesList, HeaderAuth, PageSpinner } from "@/src/components";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { CourseType, courseService } from "@/src/services/courseService";
@@ -53,6 +53,9 @@ const CoursePage: NextPage = () => {
         }
     }
 
+    if (course === undefined) {
+        return <PageSpinner />
+    }
 
     return (
         <>
@@ -115,6 +118,18 @@ const CoursePage: NextPage = () => {
                                 />
                         }
                     </div>
+                </Container>
+                <Container className={styles.episodeInfo}>
+                    <p className={styles.episodeDivision}>EPISÓDIOS</p>
+                    <p className={styles.episodeLength}>{course?.episodes?.length} episódios</p>
+                    {course?.episodes?.map((episode) => (
+                        <>
+                            <EpisodesList
+                                key={episode.id}
+                                episode={episode}
+                            />
+                        </>
+                    ))}
                 </Container>
             </main>
         </>
