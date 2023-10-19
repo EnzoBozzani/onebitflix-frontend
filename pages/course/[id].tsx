@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import styles from '@/styles/CoursePage.module.scss';
 import Head from "next/head";
-import { EpisodesList, HeaderAuth, PageSpinner } from "@/src/components";
+import { EpisodesList, Footer, HeaderAuth, PageSpinner } from "@/src/components";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { CourseType, courseService } from "@/src/services/courseService";
@@ -77,7 +77,11 @@ const CoursePage: NextPage = () => {
                 <Container className={styles.courseInfo}>
                     <p className={styles.courseTitle}>{course?.name}</p>
                     <p className={styles.courseDescription}>{course?.synopsis}</p>
-                    <Button outline className={styles.courseBtn}>
+                    <Button
+                        outline
+                        className={styles.courseBtn}
+                        disabled={course?.episodes?.length === 0}
+                    >
                         ASSISTIR AGORA!
                         <img
                             src="/buttonPlay.svg"
@@ -122,15 +126,23 @@ const CoursePage: NextPage = () => {
                 <Container className={styles.episodeInfo}>
                     <p className={styles.episodeDivision}>EPISÓDIOS</p>
                     <p className={styles.episodeLength}>{course?.episodes?.length} episódios</p>
-                    {course?.episodes?.map((episode) => (
-                        <>
-                            <EpisodesList
-                                key={episode.id}
-                                episode={episode}
-                            />
-                        </>
-                    ))}
+                    {course?.episodes?.length === 0 ?
+                        (
+                            <p>
+                                <strong>Não temos episódios ainda, volte outra hora! &#x1F606;&#x1F918;&#128518;</strong>
+                            </p>
+                        )
+                        :
+                        course?.episodes?.map((episode) => (
+                            <>
+                                <EpisodesList
+                                    key={episode.id}
+                                    episode={episode}
+                                />
+                            </>
+                        ))}
                 </Container>
+                <Footer />
             </main>
         </>
     )
