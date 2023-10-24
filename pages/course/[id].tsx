@@ -138,6 +138,7 @@ const CoursePage: NextPage = () => {
                                 <EpisodesList
                                     key={episode.id}
                                     episode={episode}
+                                    course={course}
                                 />
                             </>
                         ))}
