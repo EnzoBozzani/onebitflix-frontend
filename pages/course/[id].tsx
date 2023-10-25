@@ -134,13 +134,11 @@ const CoursePage: NextPage = () => {
                         )
                         :
                         course?.episodes?.map((episode) => (
-                            <>
-                                <EpisodesList
-                                    key={episode.id}
-                                    episode={episode}
-                                    course={course}
-                                />
-                            </>
+                            <EpisodesList
+                                key={episode.id}
+                                episode={episode}
+                                course={course}
+                            />
                         ))}
                 </Container>
                 <Footer />
