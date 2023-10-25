@@ -21,6 +21,14 @@ const EpisodePlayer: NextPage = () => {
         if (res.status === 200) setCourse(res.data);
     }
 
+    const handleLastEpisode = () => {
+        router.push(`/course/episode/${episodeOrder - 1}?courseid=${course?.id}`)
+    };
+
+    const handleNextEpisode = () => {
+        router.push(`/course/episode/${episodeOrder + 1}?courseid=${course?.id}`)
+    }
+
     useEffect(() => {
         getCourse();
     }, [courseId]);
@@ -52,15 +60,23 @@ const EpisodePlayer: NextPage = () => {
                             />
                         )
                     }
-                    <div className={styles.episodeButton}>
-                        <Button className={styles.episodeButton}>
+                    <div className={styles.episodeButtonDiv}>
+                        <Button
+                            className={styles.episodeButton}
+                            disabled={episodeOrder === 0}
+                            onClick={handleLastEpisode}
+                        >
                             <img
                                 src="/episode/iconArrowLeft.svg"
                                 alt="setaEsquerda"
                                 className={styles.arrowImg}
                             />
                         </Button>
-                        <Button className={styles.episodeButton}>
+                        <Button
+                            className={styles.episodeButton}
+                            disabled={episodeOrder + 1 === course.episodes.length}
+                            onClick={handleNextEpisode}
+                        >
                             <img
                                 src="/episode/iconArrowRight.svg"
                                 alt="setaDireita"
@@ -68,6 +84,9 @@ const EpisodePlayer: NextPage = () => {
                             />
                         </Button>
                     </div>
+                    <p className='text-center py-4'>
+                        {course.episodes[episodeOrder].synopsis}
+                    </p>
                 </Container>
             </main>
         </>
