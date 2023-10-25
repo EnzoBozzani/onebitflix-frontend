@@ -6,12 +6,25 @@ import {
     FavoriteCategories,
     Footer,
     FeaturedCategory,
-    ListCategories
+    ListCategories,
+    PageSpinner
 }
     from '@/src/components';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 
 const HomeAuth: NextPage = () => {
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!sessionStorage.getItem('onebitflix-token')) router.push('/login');
+        else setLoading(false);
+    }, []);
+
+    if (loading) return <PageSpinner />
+
     return (
         <>
             <Head>

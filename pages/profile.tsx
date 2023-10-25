@@ -1,13 +1,23 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import { UserForm, HeaderAuth, Footer, PasswordForm } from "@/src/components";
+import { UserForm, HeaderAuth, Footer, PasswordForm, PageSpinner } from "@/src/components";
 //@ts-ignore
 import { Container, Row, Col, Button } from 'reactstrap';
 import styles from '@/styles/Profile.module.scss';
-import { useState, ReactNode } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 const UserInfo: NextPage = () => {
     const [form, setForm] = useState('userForm');
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!sessionStorage.getItem('onebitflix-token')) router.push('/login');
+        else setLoading(false);
+    }, []);
+
+    if (loading) return <PageSpinner />;
 
 
     return (

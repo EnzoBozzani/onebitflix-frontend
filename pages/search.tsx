@@ -1,6 +1,6 @@
 import styles from '@/styles/Search.module.scss';
 import Head from 'next/head';
-import { Footer, HeaderAuth, SearchCard } from '@/src/components';
+import { Footer, HeaderAuth, PageSpinner, SearchCard } from '@/src/components';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ const Search: NextPage = () => {
     const router = useRouter();
     const searchName = router.query.name;
     const [searchResult, setSearchResult] = useState<CourseType[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const searchCourses = async () => {
         if (typeof searchName === 'string') {
@@ -22,7 +23,14 @@ const Search: NextPage = () => {
 
     useEffect(() => {
         searchCourses();
-    }, [searchName])
+    }, [searchName]);
+
+    useEffect(() => {
+        if (!sessionStorage.getItem('onebitflix-token')) router.push('/login');
+        else setLoading(false);
+    }, []);
+
+    if (loading) return <PageSpinner />
 
     return (
         <>
