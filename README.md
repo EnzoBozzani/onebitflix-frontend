@@ -1,6 +1,6 @@
 <h1>Onebitflix Frontend</h1>
 
-> Project Status: Finished (??, 2023)
+> Project Status: Finished (October 25, 2023)
 
 ### Topics
 
@@ -20,7 +20,7 @@
 
 ## Features
 
-??
+Navigate through an online platform, containing courses with episodes.
 
 ## Dependencies
 
